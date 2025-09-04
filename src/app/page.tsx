@@ -26,6 +26,16 @@ const skills = [
 
 const projects = [
   {
+    title: "Portfolio Website",
+    desc: "My personal portfolio built with Next.js, TailwindCSS, and an AI-inspired animated background.",
+    href: "https://github.com/judgevan/portfolio",
+  },
+  {
+    title: "Task API (Python)",
+    desc: "Backend API built with Python for task management.",
+    href: "https://github.com/judgevan/task-api",
+  },
+  {
     title: "Workcity Chat (WordPress)",
     desc: "A WordPress plugin for real-time chat.",
     href: "https://github.com/judgevan/workcity-chat-wordpress",
@@ -50,11 +60,6 @@ const projects = [
     desc: "A frontend React weather app with real-time API integration.",
     href: "https://github.com/judgevan/weather-app-ui",
   },
-  {
-    title: "Task API (Python)",
-    desc: "Backend API built with Python for task management.",
-    href: "https://github.com/judgevan/task-api",
-  },
 ];
 
 export default function Home() {
@@ -78,7 +83,7 @@ export default function Home() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    let particles: { x: number; y: number; dx: number; dy: number; radius: number }[] = [];
+    const particles: { x: number; y: number; dx: number; dy: number; radius: number }[] = [];
 
     for (let i = 0; i < 80; i++) {
       particles.push({
@@ -108,7 +113,7 @@ export default function Home() {
 
         particles.forEach((p2, j) => {
           if (i !== j) {
-            let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+            const dist = Math.hypot(p.x - p2.x, p.y - p2.y); // <-- now const
             if (dist < 120) {
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
@@ -159,20 +164,20 @@ export default function Home() {
       {/* Hero */}
       <section id="hero" className="flex flex-col items-center justify-center text-center py-28 text-white">
         <Image
-          src="/images/judge.jpeg"
+          src="/profile.jpg"
           alt="Odeh Judge"
           width={150}
           height={150}
           className="rounded-full shadow-lg"
         />
-        <h2 className="text-4xl font-bold mt-6">Hi, I'm <span className="text-teal-400">Odeh Judge</span></h2>
+        <h2 className="text-4xl font-bold mt-6">Hi, I&apos;m <span className="text-teal-400">Odeh Judge</span></h2>
         <p className="text-gray-300 mt-4 max-w-xl">
           A passionate software engineer and web developer, building scalable apps and exploring Web3, AI, and modern backend technologies.
         </p>
         <div className="flex space-x-6 mt-6">
-          <a href="https://github.com/judgevan" target="_blank"><Github /></a>
-          <a href="https://linkedin.com/in/judgevan" target="_blank"><Linkedin /></a>
-          <a href="https://twitter.com/judgevan" target="_blank"><Twitter /></a>
+          <a href="https://github.com/judgevan" target="_blank" rel="noopener noreferrer"><Github /></a>
+          <a href="https://linkedin.com/in/judgevan" target="_blank" rel="noopener noreferrer"><Linkedin /></a>
+          <a href="https://twitter.com/judgevan" target="_blank" rel="noopener noreferrer"><Twitter /></a>
         </div>
       </section>
 
@@ -203,7 +208,7 @@ export default function Home() {
             >
               <h4 className="font-bold">{p.title}</h4>
               <p className="text-gray-400 mt-2">{p.desc}</p>
-              <a href={p.href} target="_blank" className="text-teal-400 mt-3 inline-block">View on GitHub</a>
+              <a href={p.href} target="_blank" rel="noopener noreferrer" className="text-teal-400 mt-3 inline-block">View on GitHub</a>
             </div>
           ))}
         </div>
@@ -213,17 +218,26 @@ export default function Home() {
       <section id="contact" className="container mx-auto py-20 text-center text-white">
         <h3 className="text-3xl font-bold">Contact Me</h3>
         <p className="text-gray-300 mt-4">
-          I’d love to connect with you! Whether it’s a project, a job opportunity, or just a chat about tech.
+          I&apos;d love to connect with you! Whether it&apos;s a project, a job opportunity, or just a chat about tech.
         </p>
         <div className="mt-6 space-x-6 flex justify-center">
           <a href="mailto:judgevan2@gmail.com" className="bg-teal-600 px-6 py-2 rounded-lg hover:bg-teal-700 flex items-center gap-2">
             <Mail size={18} /> Email Me
           </a>
-          <a href="https://linkedin.com/in/judgevan" target="_blank" className="bg-gray-700 px-6 py-2 rounded-lg hover:bg-gray-600 flex items-center gap-2">
+          <a href="https://linkedin.com/in/judgevan" target="_blank" rel="noopener noreferrer" className="bg-gray-700 px-6 py-2 rounded-lg hover:bg-gray-600 flex items-center gap-2">
             <Linkedin size={18} /> LinkedIn
           </a>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-black/80 py-6 text-center text-gray-400">
+        <p>© {new Date().getFullYear()} Odeh Judge. All rights reserved.</p>
+        <div className="flex justify-center space-x-6 mt-3">
+          <a href="https://github.com/judgevan" target="_blank" rel="noopener noreferrer"><Github /></a>
+          <a href="https://linkedin.com/in/judgevan" target="_blank" rel="noopener noreferrer"><Linkedin /></a>
+        </div>
+      </footer>
     </div>
   );
 }
